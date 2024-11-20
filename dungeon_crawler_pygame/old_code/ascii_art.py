@@ -1,5 +1,5 @@
-from colors import *
-from sprites import *
+from dungeon_crawler_pygame.old_code.colors import *
+from dungeon_crawler_pygame.old_code.sprites import *
 from random import randint
 
 def draw_ascii():

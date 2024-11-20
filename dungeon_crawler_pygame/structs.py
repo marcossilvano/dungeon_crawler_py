@@ -13,6 +13,7 @@ class InventoryItem:
         self.name = name
         self.stats = stats
 
+
 @dataclass
 class Inventory:   
 
@@ -20,6 +21,7 @@ class Inventory:
         self.weapon = InventoryItem("Wooden Sword", 5)
         self.armor  = InventoryItem("Wooden Armor", 5)
         self.potions= 0
+
 
 @dataclass
 class Animation:
@@ -30,6 +32,7 @@ class Animation:
         self.frame_counter = 0
         self.frame_time = frame_time
         self.loop = loop
+
 
     def animate(self):
         self.frame_counter += 1
@@ -54,11 +57,13 @@ class Entity:
         self.hp = 0
         self.current_animation = 'idle'
 
+
     def draw(self, screen: pygame.Surface):
         self.animations[self.current_animation].animate()
         anim: Animation = self.animations[self.current_animation]
         clip = get_texture_clip_idx(self.texture, anim.frames[anim.current_frame])
         screen.blit(self.texture, (self.x*16, self.y*16), clip)
+
 
     def set_animation(self, anim_name: str):
         if anim_name == self.current_animation:
@@ -92,7 +97,7 @@ class Player(Entity):
 
     
     def try_turn_at_corner(self):
-        if self.vel_x != 0: # try to go up or down
+        if self.vel_x != 0: # try to go left or right
             if self.last_vel_y == 0:
                 self.last_vel_y = 1
 
@@ -101,14 +106,15 @@ class Player(Entity):
             elif not Map.is_wall(self.x + self.vel_x, self.y - self.last_vel_y):                
                 self.next_y = self.y - self.last_vel_y
 
-        elif self.vel_y != 0: # try to go left or down
+        elif self.vel_y != 0: # try to go up or down
             if self.last_vel_x == 0:
                 self.last_vel_x = 1
 
             if not Map.is_wall(self.x + self.last_vel_x, self.y + self.vel_y):
                 self.next_x = self.x + self.last_vel_x
-            if not Map.is_wall(self.x - self.last_vel_x, self.y + self.vel_y):
+            elif not Map.is_wall(self.x - self.last_vel_x, self.y + self.vel_y):
                 self.next_x = self.x - self.last_vel_x
+
 
     def update(self):
         self.x = move_towards(self.x, self.next_x, 0.1)

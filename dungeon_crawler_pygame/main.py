@@ -2,7 +2,7 @@
 # Unicode emoji: https://unicode.org/emoji/charts/full-emoji-list.html
 # PyGame: https://www.pygame.org/docs/
 
-from colors import *
+# from dungeon_crawler_pygame.old_code.colors import *
 from structs import *
 from world import *
 from dialog import *
@@ -50,14 +50,14 @@ def show_message(key: str):
     msg_key = key
 
 
-def draw_message():
-    set_cursor(1, Map.get_height() + 4)
-    print(messages[msg_key], end="")
+# def draw_message():
+#     set_cursor(1, Map.get_height() + 4)
+#     print(messages[msg_key], end="")
 
 
-def draw_stats():
-    set_cursor(Map.get_width() + 7, 2)
-    print("S-T-A-T-S", end="")
+# def draw_stats():
+#     set_cursor(Map.get_width() + 7, 2)
+#     print("S-T-A-T-S", end="")
 
 
 def draw_game(screen: pygame.Surface):
@@ -67,8 +67,10 @@ def draw_game(screen: pygame.Surface):
     # draw_stats()
     # draw_message()
 
+
 def update_game():
     player.update()
+
 
 def init_game():
     init_input()
@@ -77,6 +79,7 @@ def init_game():
 
     global player
     player = Player('assets/player_16x16.png', 1, 1)
+
 
 def main():
     pygame.init()
@@ -123,6 +126,7 @@ def main():
         dt = clock.tick(60)/1000 # sync to 60 fps
 
     pygame.quit()
+
 
 if __name__ == '__main__':
     main()

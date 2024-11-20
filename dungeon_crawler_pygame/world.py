@@ -9,6 +9,7 @@ class Map:
     wall_tiles = [129,131,159,160,161,189,190,191,219,220,221]
     tiles: pygame.Surface
 
+
     def load_map(filepath: str, tiles_image: str):
         Map.tiles = load_image(tiles_image)
 
@@ -19,6 +20,7 @@ class Map:
             map.append(row)
         Map.world.append(map)
 
+
     def is_wall(x: int, y: int):
         map = Map.world[Map.level]
         for wall in Map.wall_tiles:
@@ -26,11 +28,14 @@ class Map:
                 return True
         return False
 
+
     def get_width():
         return len(Map.world[Map.level][0])
 
+
     def get_height():
         return len(Map.world[Map.level])
+
 
     def draw(screen: pygame.Surface, x: int, y: int):
         map = Map.world[Map.level]
